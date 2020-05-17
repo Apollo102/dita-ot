@@ -13,7 +13,6 @@ import net.sf.saxon.trans.XPathException;
 import org.apache.tools.ant.types.XMLCatalog;
 import org.apache.tools.ant.util.FileNameMapper;
 import org.apache.tools.ant.util.FileUtils;
-import org.apache.xml.resolver.tools.CatalogResolver;
 import org.dita.dost.exception.DITAOTException;
 import org.dita.dost.pipeline.AbstractPipelineInput;
 import org.dita.dost.pipeline.AbstractPipelineOutput;
@@ -25,6 +24,7 @@ import org.xml.sax.EntityResolver;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
+import org.xmlresolver.Resolver;
 
 import javax.xml.transform.Source;
 import javax.xml.transform.URIResolver;
@@ -73,7 +73,7 @@ public final class XsltModule extends AbstractPipelineModuleImpl {
 
     private void init() {
         if (entityResolver == null || uriResolver == null) {
-            final CatalogResolver catalogResolver = CatalogUtils.getCatalogResolver();
+            final Resolver catalogResolver = CatalogUtils.getCatalogResolver();
             entityResolver = catalogResolver;
             uriResolver = catalogResolver;
         }
